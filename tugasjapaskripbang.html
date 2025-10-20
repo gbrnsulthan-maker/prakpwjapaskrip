@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pengecekan Mahasiswa</title>
+  <link rel="stylesheet" href="tugasjapaskripbang.css">
+</head>
+<body>
+  <h2>Demo Fitur Javascript</h2>
+  <!-- tombol tombolnya -->
+  <button onclick="toggleMode()">Mode Malam</button>
+  <button onclick="addCard()">Tambah Card</button>
+  <button onclick="openPopup()">Buka Form</button>
+  <button onclick="cekKOM()">Cek KOM (NIM TI)</button>
+  <!-- cardnyaaa -->
+  <div id="cardContainer"></div>
+  <!-- tempat formnya -->
+  <div class="popup" id="popupForm">
+    <div class="popup-content">
+      <h3>Form Data</h3>
+      <input type="text" placeholder="Masukkan nama...">
+      <input type="email" placeholder="Masukkan email...">
+      <button onclick="closePopup()">Tutup</button>
+    </div>
+  </div>
+  <script>
+    // === mode malamnya ya bang ===
+    function toggleMode() {
+      document.body.classList.toggle("dark-mode");
+    }
+    // === ini yang card card kaya abang ituu bng ===
+    let cardIndex = 1;
+
+    function addCard() {
+      const container = document.getElementById("cardContainer");
+      const card = document.createElement("div");
+      card.classList.add("card");
+      card.innerHTML = `
+        <span class="close-btn" onclick="this.parentElement.remove()">×</span>
+        <h4>Card ${cardIndex}</h4>
+        <p>Ini adalah card ke-${cardIndex}</p>`;
+      container.appendChild(card);
+      cardIndex++;
+    }
+    // === yang masukkan nama dan emailnya bang  ===
+    function openPopup() {
+      document.getElementById("popupForm").style.display = "flex";
+    }
+    function closePopup() {
+      document.getElementById("popupForm").style.display = "none";
+    }
+    // === ini saya gatau cara biar ada data semua kom, jadinya make nim tertentu aja yaitu nim saya sendiri dan setelahnya ===
+    function cekKOM() {
+      let nim = prompt("Masukkan NIM Mahasiswa TI:");
+      if (nim) {
+        alert("NIM tidak boleh kosong ya bang!");
+      } else if (nim.startsWith("251402031")) {
+        alert("Mahasiswa dengan NIM " + nim + " berada di Kom B");
+      } else if (nim.startsWith("251402032")) {
+        alert("Mahasiswa dengan NIM " + nim + " berada di Kom C");
+      } else if (nim.startsWith("251402033")) {
+        alert("Mahasiswa dengan NIM " + nim + " berada di Kom A");
+      } else {
+        alert("NIM " + nim + " tidak terdaftar di Prodi Teknologi Informasi!");
+      }
+    }
+  </script>
+</body>
+</html>
